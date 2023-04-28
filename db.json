@@ -1,0 +1,232 @@
+{
+  "devices": [
+    {
+      "type": "laptop",
+      "name": "acer",
+      "status": "in stock",
+      "borrower": "none",
+      "description": "win 11",
+      "id": 3
+    },
+    {
+      "type": "pc",
+      "name": "acer",
+      "status": "in stock",
+      "borrower": "none",
+      "description": "win 9",
+      "id": 4
+    },
+    {
+      "type": "pc",
+      "name": "acer",
+      "status": "in stock",
+      "description": "win 7",
+      "id": 5,
+      "borrower": "none"
+    },
+    {
+      "type": "laptop",
+      "name": "acer",
+      "status": "in stock",
+      "borrower": "none",
+      "description": "win 7",
+      "id": 7
+    },
+    {
+      "type": "pc",
+      "name": "acer",
+      "status": "in stock",
+      "borrower": "none",
+      "description": "ms dos",
+      "id": 8
+    },
+    {
+      "type": "pc",
+      "name": "dell",
+      "status": "in stock",
+      "borrower": "none",
+      "description": "win 8.1",
+      "id": 9
+    },
+    {
+      "type": "laptop",
+      "name": "acer",
+      "status": "in stock",
+      "borrower": "none",
+      "description": "win 10",
+      "id": 13
+    },
+    {
+      "type": "pc",
+      "name": "acer",
+      "status": "in stock",
+      "borrower": "none",
+      "description": "win 11",
+      "id": 14
+    },
+    {
+      "type": "laptop",
+      "name": "acer",
+      "status": "borrowed",
+      "borrower": {
+        "name": "Ngoc Tuan",
+        "gender": "male",
+        "phone": "0344705573",
+        "email": "tuan202@gmail.com",
+        "date": "06.09.2022",
+        "id": 1
+      },
+      "description": "win 10",
+      "id": 15
+    },
+    {
+      "type": "laptop",
+      "name": "acer",
+      "status": "in stock",
+      "borrower": "none",
+      "description": "win 11",
+      "id": 16
+    },
+    {
+      "type": "pc",
+      "name": "acer",
+      "status": "in stock",
+      "borrower": "none",
+      "description": "win 11",
+      "id": 17
+    },
+    {
+      "type": "pc",
+      "name": "acer",
+      "status": "in stock",
+      "borrower": "none",
+      "description": "win 7",
+      "id": 18
+    },
+    {
+      "type": "laptop",
+      "name": "acer",
+      "status": "in stock",
+      "borrower": "none",
+      "description": "win 7",
+      "id": 20
+    },
+    {
+      "type": "pc",
+      "name": "acer",
+      "status": "in stock",
+      "borrower": "none",
+      "description": "win xp",
+      "id": 21
+    },
+    {
+      "type": "pc",
+      "name": "acer",
+      "status": "in stock",
+      "borrower": "none",
+      "description": "win 8.1",
+      "id": 22
+    },
+    {
+      "type": "pc",
+      "name": "acer",
+      "status": "in stock",
+      "borrower": "none",
+      "description": "win 10",
+      "id": 23
+    },
+    {
+      "type": "lap",
+      "name": "acer",
+      "status": "in stock",
+      "borrower": "none",
+      "description": "win 10",
+      "id": 24
+    },
+    {
+      "type": "pc",
+      "name": "vison",
+      "status": "in stock",
+      "description": "win20",
+      "borrower": "none",
+      "id": 25
+    },
+    {
+      "type": "pc",
+      "name": "dell",
+      "status": "in stock",
+      "borrower": "none",
+      "description": "linux",
+      "id": 30
+    },
+    {
+      "type": "pc",
+      "name": "samsung",
+      "status": "borrowed",
+      "borrower": {
+        "name": "linh",
+        "gender": "female",
+        "phone": "0394921212",
+        "email": "mai@gmail.com",
+        "date": "06.09.2022",
+        "id": 2
+      },
+      "description": "win 8",
+      "id": 31
+    },
+    {
+      "type": "laptop",
+      "name": "dell",
+      "status": "in stock",
+      "borrower": "none",
+      "description": "win20",
+      "id": 32
+    }
+  ],
+  "employee": [
+    {
+      "name": "Ngoc Tuan",
+      "gender": "male",
+      "phone": "0344705573",
+      "email": "tuan202@gmail.com",
+      "date": "06.09.2022",
+      "id": 1
+    },
+    {
+      "name": "linh",
+      "gender": "female",
+      "phone": "0394921212",
+      "email": "mai@gmail.com",
+      "date": "06.09.2022",
+      "id": 2
+    },
+    {
+      "name": "mai",
+      "gender": "female",
+      "phone": "2222222222",
+      "email": "mai@gmail.com",
+      "date": "13.09.2022",
+      "id": 3
+    },
+    {
+      "name": "Kieẹt",
+      "gender": "female",
+      "phone": "0332121312",
+      "email": "kiet@gmail.com",
+      "date": "12.04.2023",
+      "id": 4
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "admin": [
+    {
+      "name": "admin",
+      "email": "admin@gmail.com",
+      "password": "admin",
+      "status": "sign in",
+      "id": 1
+    }
+  ]
+}

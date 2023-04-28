@@ -1,0 +1,131 @@
+<p-toast position="top-right" key="add"></p-toast>
+<p-toast position="top-right" key="update"></p-toast>
+
+<div class="table">
+ <p-toolbar styleClass="mb-4 mt-4">
+        <ng-template pTemplate="left">
+            <button pButton pRipple label="New device" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
+            <button pButton pRipple label="Delete" icon="pi pi-trash"   class="p-button-danger" (click)="deleteSelectedDevice()" [disabled]="!selectedDevice || !selectedDevice.length"></button>
+        </ng-template>
+    </p-toolbar>
+<p-table [paginator]="true"  [value]="devices"  responsiveLayout="scroll"   [showCurrentPageReport]="true" [rows]="10"   [(selection)]="selectedDevice">
+  <ng-template pTemplate="caption" >
+        List of device
+    </ng-template>
+  <ng-template pTemplate="header" let-columns>
+     <tr>
+      <th style="width: 3rem">
+        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+      </th>
+    <th>ID
+      <p-columnFilter type="text" field="id" display="menu"></p-columnFilter>
+    </th>
+    <th>PYPE
+      <p-columnFilter type="text" field="type" display="menu"></p-columnFilter>
+    </th>
+    <th>NAME 
+      <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+    </th>
+    <th>STATUS
+      <p-columnFilter type="text" field="status" display="menu"></p-columnFilter>
+    </th>
+    <th>Borrower
+      <p-columnFilter type="text" field="borrower.name" display="menu"></p-columnFilter>
+    </th>
+    <th>DESCRIPTION
+      <p-columnFilter type="text" field="description" display="menu"></p-columnFilter>
+    </th>
+    <th></th>
+     </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-device >
+    <tr >
+      <td>
+        <p-tableCheckbox [value]="device"></p-tableCheckbox>
+      </td>
+     <td>{{ device.id }}</td>
+      <td>{{ device.type }}</td>
+      <td>{{ device.name }}</td>
+       <td> 
+        <p-badge value="borrowed"  *ngIf="device.status =='borrowed'" severity="warning"></p-badge>
+<p-badge *ngIf="device.status =='in stock'"    severity="success" value="in stock" ></p-badge>
+      </td>
+      <td *ngIf=" device.borrower =='none'">{{ device.borrower }}</td>
+      <td *ngIf=" device.borrower !='none'">{{ device.borrower.name }}</td>
+
+      <td>{{ device.description }}</td>
+      <td><button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
+        (click)="editDevice(device)"></button>
+      <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+        (click)="deleteDevice(device)"></button></td>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="summary">
+    </ng-template>
+   
+</p-table>
+
+ </div>
+ 
+<form [formGroup]="deviceForm">
+  <p-dialog header="Employee Details" [(visible)]="deviceDialog" [modal]="true" styleClass="p-fluid"
+    [style]="{width: '50vw'}">
+    <ng-template pTemplate="content">
+      <div class="p-field mt-3 mb-4">
+        <label class="">Type</label>
+        <div class="mt-2 field-radiobutton">
+          <p-radioButton id="pc" name="type" value="pc" formControlName="type"></p-radioButton>
+          <label for="pc">PC</label>
+        </div>
+        <div class="field-radiobutton">
+          <p-radioButton id="laptop" name="type" value="laptop" formControlName="type"></p-radioButton>
+          <label for="laptop">Laptop</label>
+        </div>
+      </div>
+      <div class="p-field mt-4 mb-4">
+        <label for="name">Name:</label>
+        <input formControlName="name" id="name" type="text" pInputText />
+        <small class="p-invalid" *ngIf="isInvalid('name')">Name is required.</small>
+
+      </div>
+      <div class="p-field mt-3 mb-4">
+        <label class="">Status</label>
+        <div class="mt-2 field-radiobutton">
+          <p-radioButton id="in-stock" name="status" value="in stock" formControlName="status"></p-radioButton>
+          <label for="in-stock">In stock</label>
+        </div>
+        <div class="field-radiobutton">
+          <p-radioButton  id="borrowed" name="status" value="borrowed" formControlName="status"></p-radioButton>
+          <label for="borrowed">Borrowed</label>
+        </div>
+      </div>
+      <div *ngIf="this.deviceForm.get('status')?.value == 'borrowed'" class="p-field mt-4 mb-4">
+      <p-dropdown [options]="employeeAll" formControlName="borrower"
+       optionLabel="name" [filter]="true" [required]="true"   [virtualScroll]="true" filterBy="name"
+       
+       [virtualScrollItemSize]="30"
+     
+        [showClear]="true" placeholder="Select a employee">
+      </p-dropdown>
+      </div>
+    <div class="p-field mt-4 mb-4">
+      <label for="description">Description:</label>
+      <input formControlName="description" id="description" type="text" pInputText />
+    </div>
+     
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <button pButton pRipple type="button" label="Cancel" class="p-button-outlined  p-button-secondary"
+        (click)="hideDialog()"></button>
+      <button pButton type="submit" label="Add" *ngIf="isAdd" (click)="addDevice()" [disabled]="!deviceForm.valid"
+        class="p-button-success"></button>
+      <button (click)="updateDevice()" pButton type="submit" label="Save" [disabled]="!deviceForm.valid"
+        *ngIf="isEdit" class="p-button-success"></button>
+
+    </ng-template>
+
+  </p-dialog>
+</form>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

@@ -1,0 +1,166 @@
+<p-toast position="top-right" key="add"></p-toast>
+<p-toast position="top-right" key="update"></p-toast>
+
+
+<div #dt class="table">
+  <p-toolbar styleClass="mb-4 mt-4">
+    <ng-template pTemplate="left">
+      <button pButton pRipple label="Add Employee" icon="pi pi-plus" class="p-button-success mr-2"
+        (click)="openNew()"></button>
+      <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedEmployee()"
+        [disabled]="!selectedEmployee || !selectedEmployee.length"></button>
+    </ng-template>
+  </p-toolbar>
+  <p-table #dt [globalFilterFields]="['id','name','name','date','email']"  [paginator]="true" responsiveLayout="scroll" [showCurrentPageReport]="true" [rows]="10" [value]="employeeAll"  [(selection)]="selectedEmployee">
+    <ng-template let-employee pTemplate="caption">
+      List of employee 
+      <!-- <span class="p-input-icon-left ">
+      <i class="pi pi-search"></i>
+      <input pInputText type="text" (input)="employee.filterGlobal(getValue($event), 'contains')" placeholder="Search..." />
+      </span> -->
+    </ng-template>
+    <ng-template pTemplate="header"  let-employee>
+      <!-- let-columns -->
+      <tr>
+        <th style="width: 3rem">
+          <p-tableHeaderCheckbox ></p-tableHeaderCheckbox>
+        </th>
+        <th>ID <p-columnFilter type="text" field="id" display="menu"></p-columnFilter></th>
+        <th>NAME 
+          <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+        </th>
+        <th>GENDER
+          <p-columnFilter type="text" field="gender" display="menu" ></p-columnFilter>
+        </th>
+        <th>PHONE
+          <p-columnFilter type="text" field="phone" display="menu"></p-columnFilter>
+        </th>
+        <th>EMAIL
+          <p-columnFilter type="text" field="email" display="menu"></p-columnFilter>
+        </th>
+        <th>DATE
+          <p-columnFilter type="text" field="date" display="menu"></p-columnFilter>
+        </th>
+        <th></th>
+      </tr>
+      
+    </ng-template>
+    <ng-template pTemplate="body" let-employee>
+      <tr>
+        <td>
+          <p-tableCheckbox [value]="employee"></p-tableCheckbox>
+        </td>
+        <td>{{ employee.id }}</td>
+        <td>{{ employee.name }}</td>
+        <td>{{ employee.gender }}</td>
+        <td>{{ employee.phone }}</td>
+        <td>{{ employee.email }}</td>
+        <td>{{ employee.date  }}</td>
+        <td>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
+            (click)="editEmployee(employee)"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+            (click)="deleteEmployee(employee)"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+
+    </ng-template>
+
+  </p-table>
+</div>
+<form [formGroup]="employeeForm">
+  <p-dialog header="Employee Details" [(visible)]="employeeDialog" [modal]="true" styleClass="p-fluid"
+    [style]="{width: '50vw'}">
+    <ng-template pTemplate="content">
+      <div class="p-field mt-4 mb-4">
+        <label for="name">Name:</label>
+        <input formControlName="name" id="name" type="text" pInputText />
+        <small class="p-invalid" *ngIf="isInvalid('name')" >Name is required.</small>
+    
+      </div>
+      <div class="p-field mt-3 mb-4">
+        <label class="">Gender</label>
+        <div class="mt-2 field-radiobutton">
+          <p-radioButton id="male" name="gender" value="male" formControlName="gender"></p-radioButton>
+          <label for="male">Male</label>
+        </div>
+        <div class="field-radiobutton">
+          <p-radioButton id="female" name="gender" value="female" formControlName="gender"></p-radioButton>
+          <label for="female">Female</label>
+        </div>
+      </div>
+
+      <div class="p-field mt-3 mb-4">
+        <label for="date">Date:</label>
+        <p-calendar formControlName="date" [showIcon]="true" [touchUI]="true" dataType="string" dateFormat="dd.mm.yy"
+          inputId="icon"></p-calendar>
+      
+        <small class="p-invalid" *ngIf="isInvalid('date')">date is required.</small>
+      
+      </div>
+      <div class="p-field mt-2 mb-4">
+        <label mode="decimal" for="id">Phone:</label>   
+        <p-inputMask mask="999 9999 999" [unmask]="true" formControlName="phone" id="Phone" placeholder=""></p-inputMask>
+        <small class="p-invalid" *ngIf="isInvalid('phone')">Phone is required.</small>
+      </div>
+      
+      <div class="p-field mt-2 mb-4">
+        <label for="id">Email:</label>
+      <input formControlName="email" type="email" pInputText />
+      
+        <small class="p-invalid" *ngIf="!employeeForm?.get('email')?.valid && (employeeForm?.get('email')?.dirty ||employeeForm?.get('email')?.touched)">
+          <div [hidden]="!employeeForm.get('email')?.errors?.['email']">
+           Email is invalid
+          </div>
+          <div [hidden]="!employeeForm.get('email')?.errors?.['required']">
+            Email is required
+          </div>
+        </small>
+      </div>
+      
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <button pButton pRipple type="button" label="Cancel" class="p-button-outlined  p-button-secondary"
+        (click)="hideDialog()"></button>
+      <button pButton type="submit" label="Add" *ngIf="isAdd" (click)="addEmployee()" [disabled]="!employeeForm.valid" class="p-button-success"></button>
+      <button (click)="updateEmloyee()" pButton type="submit" label="Save" [disabled]="!employeeForm.valid" *ngIf="isEdit" class="p-button-success"></button>
+
+    </ng-template>
+
+  </p-dialog>
+</form>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+
+
+<!-- 
+   There are {{employees?.length}} cars
+<tr>
+    
+
+   
+</tr> 
+
+
+
+<th *ngFor="let col of columns">
+                {{col.header}}
+                <p-sortIcon [field]="col.field"></p-sortIcon>
+      </th>
+
+
+       <td *ngFor="let col of columns">
+        {{employee[col.field]}}
+        
+      </td>
+
+      <ng-template pTemplate="emptymessage" let-employee>
+        <tr>
+          <td [attr.colspan]="employees.length">
+            No records found
+          </td>
+        </tr>
+      </ng-template>
+-->

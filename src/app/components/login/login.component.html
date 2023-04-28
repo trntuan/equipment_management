@@ -1,0 +1,19 @@
+<p-toast position="top-right" key="log"></p-toast>
+
+<div class="container d-flex r min-w-full">
+  <div class="form-tt mr-auto ml-auto">
+    <h2>login</h2>
+    <form  [formGroup]="loginForm">
+      
+      <input type="text" name="username" formControlName="email" forn placeholder="email" pInputText />
+
+      <!-- <input type="text"  /> -->
+      <input type="password" name="password" formControlName="password" forn placeholder="password" pInputText />
+      
+      <input type="checkbox" id="checkbox" name="checkbox"><label class="checkbox-text ">Next time remember to login</label>
+      <input class="cursor-pointer" type="submit" name="submit" (click)="login()"  value="login" />
+ 
+    </form>
+  
+  </div>
+</div>
