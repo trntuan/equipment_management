@@ -1,6 +1,6 @@
 <p-toast position="top-right" key="log"></p-toast>
 <div class="menu">
-  <div class="dashboard">
+  <div   *ngIf="status == 'sign out'" class="dashboard">
     <input checked="" class="menu_input" id="btn1" name="menu" type="radio" /><label class="menu_label" for="btn1">
     <div [routerLink]="['devices']"
     class="menu_text">

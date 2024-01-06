@@ -1,22 +1,6 @@
 {
   "devices": [
     {
-      "type": "laptop",
-      "name": "acer",
-      "status": "in stock",
-      "borrower": "none",
-      "description": "win 11",
-      "id": 3
-    },
-    {
-      "type": "pc",
-      "name": "acer",
-      "status": "in stock",
-      "borrower": "none",
-      "description": "win 9",
-      "id": 4
-    },
-    {
       "type": "pc",
       "name": "acer",
       "status": "in stock",
@@ -181,6 +165,21 @@
       "borrower": "none",
       "description": "win20",
       "id": 32
+    },
+    {
+      "type": "laptop",
+      "name": "ace",
+      "status": "borrowed",
+      "borrower": {
+        "name": "mai",
+        "gender": "female",
+        "phone": "2222222222",
+        "email": "mai@gmail.com",
+        "date": "13.09.2022",
+        "id": 3
+      },
+      "description": null,
+      "id": 33
     }
   ],
   "employee": [
@@ -215,17 +214,38 @@
       "email": "kiet@gmail.com",
       "date": "12.04.2023",
       "id": 4
+    },
+    {
+      "name": "Trương Ngọc Tuấn",
+      "gender": "male",
+      "phone": "3447055733",
+      "email": "truongngoctuan@gmail.com",
+      "date": "21.12.2023",
+      "id": 5
+    },
+    {
+      "name": "Trương Ngọc Tuấn",
+      "gender": "male",
+      "phone": "3447055731",
+      "email": "asa@tuan.com",
+      "date": "10.01.2024",
+      "id": 6
+    },
+    {
+      "name": "tuan",
+      "gender": "female",
+      "phone": "3447055732",
+      "email": "asasass@ta",
+      "date": "18.01.2024",
+      "id": 7
     }
   ],
-  "profile": {
-    "name": "typicode"
-  },
   "admin": [
     {
       "name": "admin",
       "email": "admin@gmail.com",
       "password": "admin",
-      "status": "sign in",
+      "status": "sign out",
       "id": 1
     }
   ]
