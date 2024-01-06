@@ -1,6 +1,6 @@
 <p-toast position="top-right" key="add"></p-toast>
 <p-toast position="top-right" key="update"></p-toast>
-
+<p-toast position="top-right" key="warning"></p-toast>
 <div class="table">
  <p-toolbar styleClass="mb-4 mt-4">
         <ng-template pTemplate="left">
@@ -56,8 +56,15 @@
       <td>{{ device.description }}</td>
       <td><button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
         (click)="editDevice(device)"></button>
-      <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-        (click)="deleteDevice(device)"></button></td>
+        <button pButton pRipple icon="pi pi-trash"
+        *ngIf=" device.borrower !='none'" [disabled]="true"
+        class="p-button-rounded p-button-warning"
+          (click)="deleteDevice(device)"></button>
+      <button pButton pRipple icon="pi pi-trash"
+      *ngIf=" device.borrower =='none'" 
+      class="p-button-rounded p-button-warning"
+        (click)="deleteDevice(device)"></button>
+      </td>
     </tr>
   </ng-template>
 
